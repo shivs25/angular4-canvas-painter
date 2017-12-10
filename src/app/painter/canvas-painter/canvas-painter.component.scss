@@ -1,0 +1,15 @@
+canvas {
+    position: absolute;
+    background-color: transparent;
+
+    
+}
+
+canvas#static {
+    z-index: 0;
+}
+
+canvas#dynamic {
+    z-index: 1;
+}
+
