@@ -62,6 +62,10 @@ export class CanvasPainterComponent implements OnInit {
     }
   }
 
+  public getImageData(): string {
+    return this.canvas.nativeElement.toDataURL();
+  }
+
   private getOffset(elem:any): any {
     let bbox: any = elem.getBoundingClientRect();
     return {
