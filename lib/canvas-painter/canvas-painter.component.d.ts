@@ -21,6 +21,7 @@ export declare class CanvasPainterComponent implements OnInit {
     ngOnInit(): void;
     undo(): void;
     wipe(): void;
+    getImageData(): string;
     private getOffset(elem);
     private initListeners();
     private removeEventListeners();

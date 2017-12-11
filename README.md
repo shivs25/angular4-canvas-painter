@@ -23,7 +23,7 @@ Angular4 component to paint on a canvas on desktop or touch devices
 }
 ```
 
-## Drawing algorithm
+## Special Thanks
 Special thanks to pwambach (https://github.com/pwambach/angular-canvas-painter) and his work with the Angular1 directive. This was written to work with Angular4 because we needed it to work in our application that is written with Angular4. 
 
 
