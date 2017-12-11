@@ -3,10 +3,21 @@ shivs-angular-painter
 
 Angular4 component to paint on a canvas on desktop or touch devices
 
-## Usage
-1. `npm install shivs-angular4-painter`
+# Installation
+```bash
+npm install shivs-angular4-painter --save 
+```
 
-#### canvas-painter
+## Usage
+* `Add ColorPickerModule in your app.module.ts`
+```javascript
+import {PainterLibraryModule} from 'shivs-angular4-painter';
+
+@NgModule({
+    ...
+    imports: [PainterLibraryModule]
+})
+```
 ```html
 <canvas-painter canvasWidth="600" canvasHeight="600" color="#00FF00"></canvas-painter>
 ```
