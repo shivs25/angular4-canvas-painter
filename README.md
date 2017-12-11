@@ -9,7 +9,7 @@ npm install shivs-angular4-painter --save
 ```
 
 ## Usage
-* `Add ColorPickerModule in your app.module.ts`
+* `Add PainterLibraryModule in your app.module.ts`
 ```javascript
 import {PainterLibraryModule} from 'shivs-angular4-painter';
 
