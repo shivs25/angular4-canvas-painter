@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 
 @Component({
   selector: 'canvas-painter',
-  templateUrl: './canvas-painter.component.html',
-  styleUrls: ['./canvas-painter.component.scss']
+  template: "\n    <canvas id=\"static\" #canvas [width]=\"canvasWidth\" [height]=\"canvasHeight\"></canvas>\n    <canvas id=\"dynamic\" #canvasDynamic [width]=\"canvasWidth\" [height]=\"canvasHeight\"></canvas>\n  ",
+  styles: ["\n    canvas {\n        position: absolute;\n        background-color: transparent;\n\n    \n    }\n\n    canvas#static {\n        z-index: 0;\n    }\n\n    canvas#dynamic {\n        z-index: 1;\n    }\n  "]
 })
 export class CanvasPainterComponent implements OnInit {
 

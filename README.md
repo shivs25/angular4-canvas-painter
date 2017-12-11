@@ -1,28 +1,31 @@
-# Angular4CanvasPainter
+shivs-angular-painter
+======================
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.1.
+Angular4 directive to paint on a canvas on desktop or touch devices
 
-## Development server
+## Usage
+1. `npm install shivs-angular-painter`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+####pwCanvas
+```html
+<canvas-painter canvasWidth="600" canvasHeight="600" color="#00FF00"></canvas-painter>
+```
 
-## Code scaffolding
+##### Options
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```javascript
+{
+  canvasWidth: 600, //px
+  canvasHeight: 600, //px
+  color: '#000',
+  lineWidth: 10, //px
+  cacheSize: 10 // boolean or a number of versions to keep in memory
+}
+```
 
-## Build
+## Drawing algorithm
+Special thanks to pwambach (https://github.com/pwambach/angular-canvas-painter) and his work with the Angular1 directive. This was written to work with Angular4 because we needed it to work in our application that is written with Angular4. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## License
+MIT
