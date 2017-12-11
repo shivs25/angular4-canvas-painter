@@ -1,8 +1,18 @@
 {
   "name": "shivs-angular4-painter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "author": "Billy Shivers",
+  "keywords": [
+    "angular",
+    "angular4",
+    "canvas",
+    "component",
+    "paint",
+    "sketch",
+    "draw",
+    "touch"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/shivs25/angular4-canvas-painter.git"
@@ -10,8 +20,8 @@
   "files": [
     "lib"
   ],
-  "main": "./lib/painter.module.js",
-  "typings": "./lib/painter.module.d.ts",
+  "main": "./lib/painter-library.module.js",
+  "typings": "./lib/painter-library.module.d.ts",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

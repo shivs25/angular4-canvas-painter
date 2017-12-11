@@ -1,10 +1,10 @@
 shivs-angular-painter
 ======================
 
-Angular4 directive to paint on a canvas on desktop or touch devices
+Angular4 component to paint on a canvas on desktop or touch devices
 
 ## Usage
-1. `npm install shivs-angular-painter`
+1. `npm install shivs-angular4-painter`
 
 #### canvas-painter
 ```html
