@@ -6,7 +6,7 @@ Angular4 directive to paint on a canvas on desktop or touch devices
 ## Usage
 1. `npm install shivs-angular-painter`
 
-####pwCanvas
+#### canvas-painter
 ```html
 <canvas-painter canvasWidth="600" canvasHeight="600" color="#00FF00"></canvas-painter>
 ```
