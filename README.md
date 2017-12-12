@@ -1,4 +1,4 @@
-shivs-angular-painter
+shivs-angular4-painter
 ======================
 
 Angular4 component to paint on a canvas on desktop or touch devices
