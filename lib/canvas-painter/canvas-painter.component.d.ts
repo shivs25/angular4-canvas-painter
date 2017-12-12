@@ -10,6 +10,7 @@ export declare class CanvasPainterComponent implements OnInit {
     color: string;
     lineWidth: number;
     cacheSize: number;
+    clipBounds: any;
     paintStart: EventEmitter<void>;
     paintEnd: EventEmitter<void>;
     private _isTouch;
@@ -38,6 +39,7 @@ export declare class CanvasPainterComponent implements OnInit {
     private _paintEndHandler;
     private _enterHandler;
     private _leaveHandler;
+    private clip();
     private mousedown();
     private mouseup();
     private mouseenter(e);

@@ -19,13 +19,14 @@ import {PainterLibraryModule} from 'shivs-angular4-painter';
 })
 ```
 ```html
-<canvas-painter canvasWidth="600" canvasHeight="600" color="#00FF00"></canvas-painter>
+<canvas-painter (paintStart)="onPaintStart()" (paintEnd)="onPaintEnd()" canvasWidth="600" canvasHeight="600" color="#00FF00"></canvas-painter>
 ```
 
 ##### Options
 
 ```javascript
 {
+  clipBounds: { x: 0, y: 0, width: 0, height: 0 }  //Set a region that can be drawn on
   canvasWidth: 600, //px
   canvasHeight: 600, //px
   color: '#000',

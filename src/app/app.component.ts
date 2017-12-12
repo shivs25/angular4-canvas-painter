@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
 
+  clipBounds = { x: 100, y: 100, width: 200, height: 200 };
+
   onPaintStart(): void {
     console.log("paint started");
   }
