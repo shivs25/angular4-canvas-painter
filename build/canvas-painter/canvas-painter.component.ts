@@ -219,10 +219,10 @@ export class CanvasPainterComponent implements OnInit {
 
 
   private clip(): void {
-    if (this.clipBounds && 
-      this.clipBounds.x > 0 && this.clipBounds.y &&
+    if (this.clipBounds && null != this.clipBounds &&
+      this.clipBounds.x >= 0 && this.clipBounds.y >= 0 &&
       this.clipBounds.width > 0 && this.clipBounds.height > 0) {
-
+        
         
       this._ctxDynamic.beginPath();
       this._ctxDynamic.rect(this.clipBounds.x, this.clipBounds.y, this.clipBounds.width, this.clipBounds.height);
