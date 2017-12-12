@@ -1,4 +1,4 @@
-import { OnInit, ElementRef } from '@angular/core';
+import { OnInit, ElementRef, EventEmitter } from '@angular/core';
 export declare class CanvasPainterComponent implements OnInit {
     private PAINT_START;
     private PAINT_MOVE;
@@ -10,6 +10,8 @@ export declare class CanvasPainterComponent implements OnInit {
     color: string;
     lineWidth: number;
     cacheSize: number;
+    paintStart: EventEmitter<void>;
+    paintEnd: EventEmitter<void>;
     private _isTouch;
     private _mouseDown;
     private _undoCache;

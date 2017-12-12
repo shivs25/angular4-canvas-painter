@@ -2,5 +2,5 @@
 
 <button (click)="painter.undo()">Undo</button>
 <button (click)="painter.wipe()">wipe</button>
-<canvas-painter #painter color="#00FF00" lineWidth="5"></canvas-painter>
+<canvas-painter #painter color="#00FF00" lineWidth="5" (paintStart)="onPaintStart()" (paintEnd)="onPaintEnd()"></canvas-painter>
 

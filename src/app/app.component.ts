@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  onPaintStart(): void {
+    console.log("paint started");
+  }
+
+  onPaintEnd(): void {
+    console.log("paint ended");
+  }
 }

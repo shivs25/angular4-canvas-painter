@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'canvas-painter',
@@ -24,6 +24,12 @@ export class CanvasPainterComponent implements OnInit {
   public lineWidth: number = 10;
   @Input() 
   public cacheSize: number = 10;
+
+  @Output() 
+  public paintStart: EventEmitter<void> = new EventEmitter<void>();
+  @Output() 
+  public paintEnd: EventEmitter<void> = new EventEmitter<void>();
+
 
   private _isTouch: boolean;
   private _mouseDown: boolean;
@@ -104,11 +110,16 @@ export class CanvasPainterComponent implements OnInit {
     this._ctx.drawImage(this.canvasDynamic.nativeElement, 0, 0);
     this._ctxDynamic.clearRect(0, 0, this.canvasDynamic.nativeElement.width, this.canvasDynamic.nativeElement.height);
     this._ppts = [];
+
+    this.paintEnd.emit();
   };
 
 
   private startTmpImage(e: any): void {
     e.preventDefault();
+
+    this.paintStart.emit();
+
     this.canvasDynamic.nativeElement.addEventListener(this.PAINT_MOVE, this._moveHandler, false);
 
     this.setPointFromEvent(this._point, e);
