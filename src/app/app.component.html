@@ -1,6 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
 <button (click)="painter.undo()">Undo</button>
+<button (click)="painter.redo()">Redo</button>
 <button (click)="painter.wipe()">wipe</button>
-<canvas-painter #painter color="#00FF00" lineWidth="5" (paintStart)="onPaintStart()" (paintEnd)="onPaintEnd()"></canvas-painter>
+<span></span>
+<canvas-painter #painter (undoLength)="onUndo($event)" (redoLength)="onRedo($event)" color="#00FF00" lineWidth="5" (paintStart)="onPaintStart()" (paintEnd)="onPaintEnd()"></canvas-painter>
 

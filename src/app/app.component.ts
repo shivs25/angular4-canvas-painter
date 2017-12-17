@@ -17,4 +17,12 @@ export class AppComponent {
   onPaintEnd(): void {
     console.log("paint ended");
   }
+
+  onUndo(e): void {
+    console.log(e);
+  }
+
+  onRedo(e): void {
+    console.log(e);
+  }
 }
