@@ -13,9 +13,12 @@ export declare class CanvasPainterComponent implements OnInit {
     clipBounds: any;
     paintStart: EventEmitter<void>;
     paintEnd: EventEmitter<void>;
+    undoLength: EventEmitter<number>;
+    redoLength: EventEmitter<number>;
     private _isTouch;
     private _mouseDown;
     private _undoCache;
+    private _redoCache;
     private _point;
     private _ppts;
     private _ctx;
@@ -23,6 +26,7 @@ export declare class CanvasPainterComponent implements OnInit {
     constructor();
     ngOnInit(): void;
     undo(): void;
+    redo(): void;
     wipe(): void;
     getImageData(): string;
     private getOffset(elem);
