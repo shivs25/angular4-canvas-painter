@@ -31,11 +31,16 @@ export class CanvasPainterComponent implements OnInit {
   public paintStart: EventEmitter<void> = new EventEmitter<void>();
   @Output() 
   public paintEnd: EventEmitter<void> = new EventEmitter<void>();
+  @Output()
+  public undoLength: EventEmitter<number> = new EventEmitter<number>();
+  @Output()
+  public redoLength: EventEmitter<number> = new EventEmitter<number>();
 
 
   private _isTouch: boolean;
   private _mouseDown: boolean;
   private _undoCache: Array<any> = [];
+  private _redoCache: Array<any> = [];
   private _point: any = { x: 0, y: 0 };
   private _ppts: Array<any> = [];
   private _ctx: any;
@@ -58,7 +63,19 @@ export class CanvasPainterComponent implements OnInit {
 
   public undo(): void {
     if (this._undoCache.length > 0) {
+      this._redoCache.push(this._ctx.getImageData(0, 0, this.canvasDynamic.nativeElement.width, this.canvasDynamic.nativeElement.height));
       this._ctx.putImageData(this._undoCache.pop(), 0, 0);
+      this.undoLength.emit(this._undoCache.length);
+      this.redoLength.emit(this._redoCache.length);
+    }
+  }
+
+  public redo(): void {
+    if (this._redoCache.length > 0) {
+      this._undoCache.push(this._ctx.getImageData(0, 0, this.canvasDynamic.nativeElement.width, this.canvasDynamic.nativeElement.height));
+      this._ctx.putImageData(this._redoCache.pop(), 0, 0);
+      this.undoLength.emit(this._undoCache.length);
+      this.redoLength.emit(this._redoCache.length);
     }
   }
 
@@ -67,6 +84,11 @@ export class CanvasPainterComponent implements OnInit {
     this._ctxDynamic.clearRect(0, 0, this.canvasDynamic.nativeElement.width, this.canvasDynamic.nativeElement.height);
     if (this._undoCache.length > 0) {
       this._undoCache.splice(0, this._undoCache.length);
+      this.undoLength.emit(0);
+    }
+    if (this._redoCache.length > 0) {
+      this._redoCache.splice(0, this._redoCache.length);
+      this.redoLength.emit(0);
     }
   }
 
@@ -106,7 +128,13 @@ export class CanvasPainterComponent implements OnInit {
     this._undoCache.push(this._ctx.getImageData(0, 0, this.canvasDynamic.nativeElement.width, this.canvasDynamic.nativeElement.height));
     if (this._undoCache.length > this.cacheSize) {
       this._undoCache = this._undoCache.slice(-1 * this.cacheSize);
-    } 
+    } else {
+      this.undoLength.emit(this._undoCache.length);
+    }
+    if (this._redoCache.length) {
+      this._redoCache.splice(0, this._redoCache.length);
+      this.redoLength.emit(0);
+    }
     this._ctxDynamic.restore();
 
     this.canvasDynamic.nativeElement.removeEventListener(this.PAINT_MOVE, this._moveHandler, false);
