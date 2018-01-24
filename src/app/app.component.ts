@@ -25,4 +25,8 @@ export class AppComponent {
   onRedoLengthChanged(e): void {
     console.log(e);
   }
+
+  onIsEmptyChanged(e): void {
+    console.log(e);
+  }
 }
