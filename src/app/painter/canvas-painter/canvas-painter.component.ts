@@ -35,12 +35,16 @@ export class CanvasPainterComponent implements OnInit {
   public undoLength: EventEmitter<number> = new EventEmitter<number>();
   @Output()
   public redoLength: EventEmitter<number> = new EventEmitter<number>();
+  @Output()
+  public isEmpty: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
   private _isTouch: boolean;
   private _mouseDown: boolean;
   private _undoCache: Array<any> = [];
   private _redoCache: Array<any> = [];
+  private _deletedFromUndoCache = false;
+  private _isEmpty = true;
   private _point: any = { x: 0, y: 0 };
   private _ppts: Array<any> = [];
   private _ctx: any;
@@ -59,6 +63,10 @@ export class CanvasPainterComponent implements OnInit {
     this._ctxDynamic = this.canvasDynamic.nativeElement.getContext('2d');
 
     this.initListeners();
+
+    this.undoLength.emit(0);
+    this.redoLength.emit(0);
+    this.isEmpty.emit(true);
   }
 
   public undo(): void {
@@ -67,6 +75,9 @@ export class CanvasPainterComponent implements OnInit {
       this._ctx.putImageData(this._undoCache.pop(), 0, 0);
       this.undoLength.emit(this._undoCache.length);
       this.redoLength.emit(this._redoCache.length);
+      if (!this._deletedFromUndoCache && !this._undoCache.length) {
+        this.setIsEmpty(true);
+      }
     }
   }
 
@@ -76,6 +87,7 @@ export class CanvasPainterComponent implements OnInit {
       this._ctx.putImageData(this._redoCache.pop(), 0, 0);
       this.undoLength.emit(this._undoCache.length);
       this.redoLength.emit(this._redoCache.length);
+      this.setIsEmpty(false);
     }
   }
 
@@ -86,6 +98,8 @@ export class CanvasPainterComponent implements OnInit {
       this._undoCache.splice(0, this._undoCache.length);
       this.undoLength.emit(0);
     }
+    this.setIsEmpty(true);
+    this._deletedFromUndoCache = false;
     if (this._redoCache.length > 0) {
       this._redoCache.splice(0, this._redoCache.length);
       this.redoLength.emit(0);
@@ -128,9 +142,11 @@ export class CanvasPainterComponent implements OnInit {
     this._undoCache.push(this._ctx.getImageData(0, 0, this.canvasDynamic.nativeElement.width, this.canvasDynamic.nativeElement.height));
     if (this._undoCache.length > this.cacheSize) {
       this._undoCache = this._undoCache.slice(-1 * this.cacheSize);
+      this._deletedFromUndoCache = true;
     } else {
       this.undoLength.emit(this._undoCache.length);
     }
+    this.setIsEmpty(false);
     if (this._redoCache.length) {
       this._redoCache.splice(0, this._redoCache.length);
       this.redoLength.emit(0);
@@ -277,6 +293,13 @@ export class CanvasPainterComponent implements OnInit {
     // If the mouse is down when it leaves the canvas, end the path
     if (this._mouseDown) {
       this.copyTmpImage();
+    }
+  }
+
+  private setIsEmpty(isEmpty: boolean) {
+    if (this._isEmpty !== isEmpty) {
+      this.isEmpty.emit(isEmpty);
+      this._isEmpty = isEmpty;
     }
   }
 

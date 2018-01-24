@@ -19,7 +19,9 @@ import {PainterLibraryModule} from 'shivs-angular4-painter';
 })
 ```
 ```html
-<canvas-painter (undoLength)="onUndo($event)" (redoLength)="onRedo($event)" (paintStart)="onPaintStart()" (paintEnd)="onPaintEnd()" canvasWidth="600" canvasHeight="600" color="#00FF00"></canvas-painter>
+<canvas-painter #painter color="#00FF00" lineWidth="5" (paintStart)="onPaintStart()" (paintEnd)="onPaintEnd()"
+                (undoLength)="onUndoLengthChanged($event)" (redoLength)="onRedoLengthChanged($event)"
+                (isEmpty)="onIsEmptyChanged($event)"></canvas-painter>
 ```
 
 ##### Options

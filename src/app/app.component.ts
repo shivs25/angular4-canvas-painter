@@ -18,11 +18,15 @@ export class AppComponent {
     console.log("paint ended");
   }
 
-  onUndo(e): void {
+  onUndoLengthChanged(e): void {
     console.log(e);
   }
 
-  onRedo(e): void {
+  onRedoLengthChanged(e): void {
+    console.log(e);
+  }
+
+  onIsEmptyChanged(e): void {
     console.log(e);
   }
 }
